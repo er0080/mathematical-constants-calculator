@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
       {"pi", calculate_pi},
       {"e", calculate_e},
       {"phi", calculate_phi},
-      {"gamma", [](int p) { return "Not yet implemented"; }},
+      {"gamma", calculate_gamma},
       {"sqrt2", [](int p) { return "Not yet implemented"; }},
       {"sqrt3", [](int p) { return "Not yet implemented"; }},
       {"sqrt5", [](int p) { return "Not yet implemented"; }},
