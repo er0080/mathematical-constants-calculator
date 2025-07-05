@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
     // Map of constant names to calculation functions
     std::map<std::string, std::function<std::string(int)>> calculators = {
         {"pi", calculate_pi},
-        {"e", [](int p) { return "Not yet implemented"; }},
+        {"e", calculate_e},
         {"phi", [](int p) { return "Not yet implemented"; }},
         {"gamma", [](int p) { return "Not yet implemented"; }},
         {"sqrt2", [](int p) { return "Not yet implemented"; }},
