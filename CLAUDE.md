@@ -8,7 +8,7 @@ This is a C++ command-line tool for calculating mathematical constants (e, π, e
 
 ## Dependencies
 
-- CLI11 (header-only library) - automatically downloaded by CMake
+- CLI11 (header-only library) - automatically downloaded to `lib/` by CMake
 - C++11 compatible compiler
 - CMake 3.15 or higher
 
@@ -29,6 +29,10 @@ cmake --build .
 mkdir build && cd build
 cmake .. && make
 
+# Clean targets
+cd build && make clean        # Clean build artifacts only
+cd build && make clean-all    # Clean everything including lib/ dependencies
+
 # Run the program
 ./build/bin/constants --constant <name> --precision <digits>
 ./build/bin/constants -c <name> -p <digits>
@@ -38,7 +42,8 @@ cmake .. && make
 ## Code Structure
 
 - `main.cpp` - Main entry point with CLI11 integration, command-line parsing, and console output
-- `CLI11.hpp` - Header-only command-line parsing library
+- `lib/` - External dependencies directory:
+  - `CLI11.hpp` - Header-only command-line parsing library
 - `constants/` - Directory containing modular implementation files:
   - `constants.h` - Header file with function declarations for all constants
   - `pi.cpp` - Implementation for π calculation

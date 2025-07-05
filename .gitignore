@@ -40,5 +40,5 @@ Thumbs.db
 *.dSYM/
 *.pdb
 
-# Downloaded dependencies
-CLI11.hpp
+# External dependencies
+lib/

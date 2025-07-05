@@ -24,15 +24,16 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} -fsanitize=address,undefined")
 endif()
 
-# Create constants directory if it doesn't exist
+# Create directories if they don't exist
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/constants)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 # Download CLI11 header if not present
-if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/CLI11.hpp)
+if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/lib/CLI11.hpp)
     message(STATUS "Downloading CLI11 header...")
     file(DOWNLOAD 
         https://github.com/CLIUtils/CLI11/releases/latest/download/CLI11.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/CLI11.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/CLI11.hpp
         SHOW_PROGRESS)
 endif()
 
@@ -45,8 +46,8 @@ add_executable(constants
     ${CONSTANTS_SOURCES}
 )
 
-# Include current directory for CLI11.hpp
-target_include_directories(constants PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# Include lib directory for external dependencies
+target_include_directories(constants PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 # Set output directory
 set_target_properties(constants PROPERTIES
@@ -56,6 +57,13 @@ set_target_properties(constants PROPERTIES
 # Install target
 install(TARGETS constants
     RUNTIME DESTINATION bin
+)
+
+# Custom clean target that removes build artifacts and downloaded dependencies
+add_custom_target(clean-all
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_SOURCE_DIR}/lib
+    COMMENT "Cleaning build directory and external dependencies"
 )
 
 # Print build information

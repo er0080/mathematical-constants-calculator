@@ -20,7 +20,7 @@ A command-line tool for calculating various mathematical constants (e, π, etc.)
 
 ## Dependencies
 
-- CLI11 (header-only library for command-line parsing) - automatically downloaded by CMake
+- CLI11 (header-only library for command-line parsing) - automatically downloaded to `lib/` by CMake
 - C++11 compatible compiler
 - CMake 3.15 or higher
 
@@ -44,6 +44,15 @@ cmake --build .
 ```bash
 mkdir build && cd build
 cmake .. && make
+```
+
+### Cleaning
+```bash
+# Clean build artifacts only (from build directory)
+cd build && make clean
+
+# Clean everything including external dependencies
+cd build && make clean-all
 ```
 
 Executable will be located in `build/bin/constants` or `build-debug/bin/constants`
