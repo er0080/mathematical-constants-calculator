@@ -10,8 +10,6 @@ std::string calculate_pi(int precision) {
     
     // For small precision, use a simple series
     if (precision <= 15) {
-        // Use Machin's formula: pi/4 = 4*arctan(1/5) - arctan(1/239)
-        long double pi_quarter = 0.0;
         
         // Calculate arctan(1/5) using series expansion
         long double term = 1.0L / 5.0L;
