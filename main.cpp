@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
       {"sqrt2", calculate_sqrt2},
       {"sqrt3", calculate_sqrt3},
       {"sqrt5", calculate_sqrt5},
-      {"apery", [](int p) { return "Not yet implemented"; }},
+      {"apery", calculate_apery},
       {"catalan", [](int p) { return "Not yet implemented"; }},
       {"ln2", [](int p) { return "Not yet implemented"; }},
       {"ln10", [](int p) { return "Not yet implemented"; }}};
